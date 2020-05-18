@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+{% block title %}Sf4 Articles {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>Welcome to articles hub</h1>
+    </div>
+</div>
+
+{% if articles %}
+<div class="row">
+    <div class="col-8">
+<div class="row">
+    <div class="col-12 border">
+        <h1>{{articles[0].title() }}</h1>
+        <p>{{articles[0].body()|slice(0,200)|raw}} ...
+        </br>
+        <a href="{{path('article_show',{'id':articles[0].id})}}" class="btn btn-success rounded float-right">Show article</a> 
+        </p>
+    </div>
+</div>
+<div class="row">
+{% if articles[1] %}
+    <div class="col-6 border my-1 px-2">
+        <h1>{{articles[1].title() }}</h1>
+        <p>{{articles[1].body()|slice(0,100)|raw}} ...
+            <a href="{{path('article_show',{'id':articles[1].id})}}" class="btn btn-success rounded float-right">Show article</a> 
+        </p>
+    </div>
+{% endif %}
+{% if articles[2] %}
+    <div class="col-6 border my-1 px-2">
+        <h1>{{articles[2].title() }}</h1>
+        <p>{{articles[2].body()|slice(0,100)|raw}} ...
+            <a href="{{path('article_show',{'id':articles[2].id})}}" class="btn btn-success rounded float-right">Show article</a> 
+        </p>
+    </div>
+{% endif %}
+</div>
+</div>
+<div class="col-4">
+    {% if newspapers %}
+    <div class="col-12">
+            <div class="card bg-primary text-white my-1">
+                    <div class="card-header">Newspapers <span class="badge badge-light badge-pill">{{newspapers|length}}</span></div>
+                    <ul class="list-group list-group-flush">
+                            {% for newspaper in newspapers %}
+                            <li class="list-group-item"><a href="/newspaper/{{newspaper.id()}}">{{newspaper.name()}}</a></li>
+                            {% endfor %}
+                    </ul>
+                  </div>
+    </div>
+    {% endif %}
+
+    {% if authors %}
+    <div class="col-12">
+            <div class="card bg-warning text-white my-1">
+                    <div class="card-header">Authors <span class="badge badge-light badge-pill">{{authors|length}}</span></div>
+                    <ul class="list-group list-group-flush">
+                            {% for author in authors %}
+                            <li class="list-group-item"><a href="/author/{{author.id()}}">{{author.name()}}</a></li>
+                            {% endfor %}
+                    </ul>
+                  </div>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+<script src="js/main.js"></script>
+{% endblock %}

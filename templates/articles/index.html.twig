@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}Sf4 Articles {% endblock %}
+
+{% block body %}
+<h1>All articles found:</h1>
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+{% if articles %}
+<table id="table-content" class="table table-striped">
+    <thead>
+        <tr>
+            <td>Article title</td>
+            <td>Article Body</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for article in articles %}
+    <tr>
+        <td>{{article.title}}</td>
+        <td>{{article.body|slice(0,50)|raw}} ...</td>
+        <td> <a href="{{ path('article_show', {id: article.id})}}" class="btn btn-dark"><i class="far fa-eye"></i> Show</a> 
+            <a href="{{ path('article_edit', {id: article.id})}}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
+            <a href="{{ path('article_delete', {id: article.id})}}" class="btn btn-danger delete-content"><i class="fas fa-trash-alt"></i> Delete</a>          
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+<p>Nothing found</p>
+{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="js/main.js"></script>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sf4 Add new Author {% endblock %}
+
+{% block body %}
+<h1>Add new author</h1>
+
+{{form_start(form)}} 
+{{form_widget(form)}} 
+{{form_end(form)}} 
+<hr>
+<a href="{{path('author_list')}}">Go Back</a>
+{% endblock %}

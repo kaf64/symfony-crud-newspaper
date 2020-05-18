@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit author {% endblock %}
+
+{% block body %}
+{{form_start(form)}} 
+{{form_widget(form)}} 
+{{form_end(form)}} 
+<hr>
+<a href="{{path('author_list')}}">Go Back</a>
+{% endblock %}

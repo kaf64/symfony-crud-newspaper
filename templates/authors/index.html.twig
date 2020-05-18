@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block title %}Authors{% endblock %}
+
+{% block body %}
+<h1>All authors found:</h1>
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+{% if authors %}
+<table id="table-content" class="table table-striped">
+    <thead>
+        <tr>
+            <td>Author name</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for author in authors %}
+    <tr>
+        <td>{{author.name()}}</td>
+        <td> <a href="{{path('author_show',{'id':author.id})}}" class="btn btn-dark"><i class="fas fa-eye"></i> Show</a> 
+            <a href="{{path('author_edit',{'id':author.id})}}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
+            <a href="{{path('author_delete',{'id':author.id})}}" class="btn btn-danger delete-content"><i class="fas fa-trash-alt"></i> Delete</a> 
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+<p>No authors yet.</p>
+{% endif %}
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="js/main.js"></script>
+{% endblock %}

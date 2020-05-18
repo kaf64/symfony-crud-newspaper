@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{article.title}} {% endblock %}
+
+{% block body %}
+<h1>{{article.title}}</h1>
+{% if article.author is defined %}
+<small>written by <a href="{{path('author_show',{'id':article.author.id})}}">{{article.author.name}}</a></small>
+{% else %} 
+<small>written by Anonymus</small>
+{% endif %}
+<p>Published date {{article.publishdate|date("Y-m-d H:i")}}</p>
+
+<hr>
+<p>{{article.body|raw}}</p>
+<hr>
+<a href="{{path('article_list')}}">Go Back</a>
+{% endblock %}

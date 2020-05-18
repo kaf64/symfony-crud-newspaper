@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{newspaper.name}} {% endblock %}
+
+{% block body %}
+<h1>{{newspaper.name}}</h1>
+<h3>Description</h3>
+<p>{{newspaper.description}}</p>
+<hr>
+<a href="{{path('newspaper_list')}}">Go Back</a>
+{% endblock %}

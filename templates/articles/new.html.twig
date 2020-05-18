@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit article{% endblock %}
+{% block stylesheets %}
+{{parent()}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+
+{% endblock %}
+
+{% block body %}
+{{form_start(form)}} 
+
+<div class="row">
+    <div class="col-sm-6">
+    {{ form_row(form.title) }}
+    </div>
+</div>
+<div id="datepicker" class="row">
+    <div class="col-sm-3">
+    {{ form_row(form.publish_date) }}
+    </div>
+</div>
+
+<div class="row">
+        <div class="col-sm-10">
+        {{ form_row(form.body) }}
+        </div>
+</div>
+
+{{form_widget(form)}} 
+{{form_end(form)}} 
+
+<hr>
+<a href="{{path('article_list')}}">Go Back</a>
+{% endblock %}
+{% block javascripts %}
+{{parent()}}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script type="text/javascript" src="/js/datepicker.js"></script>
+
+
+{% endblock %}
+
+
+    
+
+{# old code new
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Sf4 Add new Article {% endblock %}
+
+{% block stylesheets %}
+{{parent()}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+
+{% endblock %}
+
+{% block body %}
+<h1>Add new article</h1>
+{{form_start(form)}} 
+<div class="row">
+    <div class="col-sm-6">
+    {{ form_row(form.title) }}
+    </div>
+</div>
+<div id="datepicker" class="row">
+    <div class="col-sm-3">
+    {{ form_row(form.publish_date) }}
+    </div>
+</div>
+<div class="row">
+        <div class="col-sm-10">
+        {{ form_row(form.body) }}
+        </div>
+</div>
+{{form_widget(form)}} 
+{{form_end(form)}} 
+<hr>
+<a href="{{path('article_list')}}">Go Back</a>
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script type="text/javascript" src="/js/datepicker.js"></script>
+
+<script type="text/javascript">
+            $(document).ready(function () {
+                tinymce.init({
+                        selector: '#article_form_body'
+                    });
+            });
+        </script>
+{% endblock %}
+#}

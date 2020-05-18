@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{author.name}} {% endblock %}
+
+{% block body %}
+<h1>{{author.name}}</h1>
+<h3>Short Bio</h3>
+<p>{{author.bio}}</br>
+{% if author.newspaper %}
+Newspaper: <a href="{{path('newspaper_show',{'id':author.newspaper.id})}}">{{author.newspaper.name}}</a><br />
+{% endif %}
+</p>
+<hr>
+<button type="button" id="articles_ajax" class="btn btn-success">Show all articles written by this author</button>
+</br>
+<table class="table">  
+    <tbody id="articles"></tbody>  
+</table> 
+<div id="label"></div>
+<ul id="article-content"></ul> 
+
+<a href="{{path('author_list')}}">Go Back</a>
+{% endblock %}
+
+{% block javascripts %}
+{{parent()}}
+<script language = "javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+      <!-- js -->
+<script language = "javascript">
+    $(document).ready(function(){   
+        $("#articles_ajax").on("click", function(event){ 
+            $.ajax({ 
+                url:        '/author/{{author.id}}',  
+                type:       'POST',   
+                dataType:   'json',  
+                async:      true,   
+                success: function(data, status) {  
+                    $('#label').html("<h3>All articles found:</h3>");
+                    $('#article-content').empty();
+                    for(i = 0; i < data.length; i++) {  
+                      article = data[i];  
+                      var date=moment(article['publish_date'].date.toString());
+                      $('#article-content').append(
+                        $('<li>').append(
+                            $('<a>').attr('href','/article/'+ article['id']).append(
+                                    article['title']),
+                                    " published in <i>"+ date.format("DD-MM-YYYY HH:mm").toString()+"</i>"));  
+                   }  
+                },  
+                error : function(xhr, textStatus, errorThrown) {  
+                   alert('Ajax request failed.');  
+                }  
+             }); 
+        }); 
+
+    });
+</script>
+{% endblock %}
