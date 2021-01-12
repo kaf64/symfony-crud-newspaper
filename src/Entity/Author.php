@@ -38,8 +38,11 @@ class Author
      */
     private $Articles;
 
-    public function __construct()
+    public function __construct($name="",$bio="",Newspaper $newspaper=null)
     {
+        $this->setName($name);
+        $this->setBio($bio);
+        $this->setNewspaper($newspaper);
         $this->Articles = new ArrayCollection();
     }
    
@@ -61,7 +64,7 @@ class Author
     }
 
     public function setName($value){
-        $this->name=$value;
+        $this->name=strip_tags($value);
     }
 
     public function getBio()

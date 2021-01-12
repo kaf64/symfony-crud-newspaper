@@ -33,9 +33,11 @@ class Newspaper
      */
     private $Authors;
 
-    public function __construct()
+    public function __construct($name="",$description="")
     {
         $this->Authors = new ArrayCollection();
+        $this->setName($name);
+        $this->setDescription($description);
     }
 
     public function getId(): ?int
@@ -50,7 +52,7 @@ class Newspaper
 
     public function setName(string $name): self
     {
-        $this->name = $name;
+        $this->name = strip_tags($name);
 
         return $this;
     }

@@ -57,5 +57,15 @@
 #user ini
 /.user.ini
 
+#ftpquota
+/.ftpquota
+
 #env
 /.env.local
+/.env.test
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###

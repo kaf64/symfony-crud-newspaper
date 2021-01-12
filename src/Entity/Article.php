@@ -42,7 +42,15 @@ class Article
 
     // gets&sets
 
+    public function __construct($title="",$body="", Author $author=null,\DateTime $publish_date=null)
+    {
+        $this->setTitle($title);
+        $this->setBody($body);
+        if($publish_date)$this->setPublishDate($publish_date);
+        else $this->setPublishDate(new \DateTime());
+        $this->setAuthor($author);
 
+    }
 
     public function getId(){
         return $this->id;
@@ -57,7 +65,7 @@ class Article
     }
 
     public function setTitle($value){
-        $this->title=$value;
+        $this->title=strip_tags($value);
     }
 
     public function getBody(){
@@ -75,10 +83,9 @@ class Article
         return $this->publish_date;
     }
 
-    public function setPublishDate(\DateTimeInterface $date): self
+    public function setPublishDate(\DateTimeInterface $date=null): self
     {
         $this->publish_date = $date;
-
         return $this;
     }
 

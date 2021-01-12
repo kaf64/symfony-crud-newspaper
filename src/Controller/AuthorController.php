@@ -41,7 +41,7 @@ class AuthorController extends AbstractController{
         $manager=$this->getDoctrine()->getManager();
         $author=new Author();
         $form=$this->createForm(AuthorFormType::class);
-            $form->handleRequest($request);
+        $form->handleRequest($request);
             if($form->isSubmitted()&& $form->isValid()){
                 $author=$form->getData();
                 $manager->getConnection()->beginTransaction();
