@@ -4,6 +4,9 @@
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 
+#vscode
+/.vscode
+
 # Email spool folder
 /app/spool/*
 
@@ -59,6 +62,12 @@
 
 #ftpquota
 /.ftpquota
+
+#php core
+/php.core
+
+#migrations
+/src/Migrations/*
 
 #env
 /.env.local

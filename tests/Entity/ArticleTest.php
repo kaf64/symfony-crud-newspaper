@@ -11,7 +11,7 @@ class ArticleTest extends TestCase{
     private $author;
     private $newspaper;
 
-    protected function setUp(){
+    protected function setUp(): void{
         $this->newspaper=new Newspaper("New newspaper","lorem ipsum dolor sit amet");
         $this->author=new Author("Jane Doe","Jane Doe was born in USA...",$this->newspaper);
     }

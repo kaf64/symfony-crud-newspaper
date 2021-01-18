@@ -33,7 +33,7 @@ class ArticleFormType extends AbstractType
         ->add("publish_date", DateTimeType::class,
         array(
             'widget'=>'single_text',
-            'format' => 'YYYY-MM-DD HH:mm',
+            'format' => 'YYYY-MM-dd HH:mm',
             'input'=>'datetime',
             'html5'=>false,
             'attr'=>array('class'=>'form-control datetimepicker-input','data-toggle'=>"datetimepicker",'data-target'=>"#article_form_publish_date"))
