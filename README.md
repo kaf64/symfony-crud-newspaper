@@ -50,5 +50,5 @@ When you want to open site for everyone, just delete these lines.
 [tempus dominus](https://tempusdominus.github.io/bootstrap-4)  
 [Tiny MCE](https://www.tiny.cloud/docs/quick-start)  
 ### License
-Project is under [MIT License](./LICENSE)
+Project is under [MIT License](./LICENSE.md)
 
