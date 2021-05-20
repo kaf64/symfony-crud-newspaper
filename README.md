@@ -1,5 +1,5 @@
 # Symfony newspaper CRUD
-Simple app to manage articles written by authors from newspapers, based on symfony 5.1
+Simple app to manage articles written by authors from newspapers, based on symfony 5.2
 ## Features
 - CRUD functionality
 - get data via Ajax (to list all articles written by particular autor)
