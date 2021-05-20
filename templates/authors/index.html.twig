@@ -15,6 +15,7 @@
     <thead>
         <tr>
             <td>Author name</td>
+            <td>Short Bio</td>
             <td>Actions</td>
         </tr>
     </thead>
@@ -22,6 +23,7 @@
     {% for author in authors %}
     <tr>
         <td>{{author.name()}}</td>
+        <td>{{author.bio() | slice(0,50)}}</td>
         <td> <a href="{{path('author_show',{'id':author.id})}}" class="btn btn-dark"><i class="fas fa-eye"></i> Show</a> 
             <a href="{{path('author_edit',{'id':author.id})}}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
             <a href="{{path('author_delete',{'id':author.id})}}" class="btn btn-danger delete-content"><i class="fas fa-trash-alt"></i> Delete</a> 

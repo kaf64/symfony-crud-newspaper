@@ -24,4 +24,15 @@ class IndexController extends AbstractController
         
         return $this->render('index/index.html.twig', array('authors'=>$authors,'newspapers'=>$newspapers,'articles'=>$articles));
     }
+
+    /**
+     * @Route("/request", name="request_test")
+     */
+    public function req_test(){
+        $client = static::createClient();
+        $request = $this->client->request('GET', '/newspapers');
+        dd($request);
+
+
+    }
 }

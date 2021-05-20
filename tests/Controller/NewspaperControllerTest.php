@@ -7,31 +7,24 @@ class NewspaperControllerTest extends WebTestCase{
 
     private $client;
 
-    protected function setUp(){
+    protected function setUp(): void{
         $this->client = static::createClient();
     }
 
-    public function testIndex(){
-
+    public function testStatusNewspaper(){
+        
+        $this->client->request('GET', '/newspapers');
+        
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 
     public function testAddNewNewspaperForm(){
         //generate from route
         $crawler= $this->client->request('GET', '/newspaper/new');
-        //drugi sposob
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/newspaper/new');
-
+        
     $formCrawlerNode = $crawler->selectButton('Add new newspaper');
     $form = $formCrawlerNode->form();
-    //dump($form);
 
-    // set some values
-    //$form['form_newspaper[name]'] = 'New newspaper tested';
-    //$form['newspaper[name]'] = 'New newspaper tested';
-    //$form['name'] = 'New newspaper tested';
-    //$form['description'] = 'New newspaper added by test';
-    //$form['form_name[subject]'] = 'Hey there!';
 
     $form=$formCrawlerNode->form([
         'newspaper_form[name]'=>'New newspaper tested',
@@ -39,18 +32,21 @@ class NewspaperControllerTest extends WebTestCase{
     ]);
 
     // submit the form
-    $client->followRedirects();
+    $this->client->followRedirects();
     
-    $crawler = $client->submit($form);
+    $crawler = $this->client->submit($form);
 
-    //po submicie sprawdź czy widać gazete
+    // check if created newspaper is shown after submit
     
-    //$this->assertGreaterThan(0, $crawler->filter('h1')->count());
+    $response=$this->client->getResponse()->getContent();
 
-    $response=$client->getResponse()->getContent();
-
+    /*
     $this->assertStringContainsString(
-        'New newspaper tested',$response);
+        'New newspaper tested', $response);
+    }
+    */
+    $this->assertStringContainsString('New newspaper tested', $response, "no newspaper name found in response");
+    $this->assertStringContainsString('New newspaper added by test', $response, "no newspaper description found in response");
 
     }
 

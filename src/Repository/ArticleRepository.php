@@ -16,7 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class ArticleRepository extends ServiceEntityRepository
 {
     //public function __construct(RegistryInterface $registry)
-    public function __construct(\Doctrine\Common\Persistence\ManagerRegistry $registry)
+    public function __construct(\Doctrine\Persistence\ManagerRegistry $registry)
     {
         parent::__construct($registry, Article::class);
     }

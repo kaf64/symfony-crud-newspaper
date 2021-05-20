@@ -20,9 +20,32 @@ Project uses database to store information about authors, newspapers, etc. To co
 **Next**, create file **.env.local** in root directory of project, from **.env** file copy line starting from `DATABASE_URL`, paste it to **.env.local** and change fields **db_user, db_password, db_name** to values corresponded to database created in previous step. Default database engine is mysql, if you use other engine, change **mysql** value in **.env.local** file.  
 **Next**, use command `php bin/console make:migration` to create migration file used to create needed tables, fields, etc. If command returns information like "SUCCESS", go to next step.    
 **Next**, use command `php bin/console doctrine:migrations:migrate` to execute migration created in previous step. If command returns in console error like "permission denided", check your database parameters in **.env.local** file.  
-**Finally**, use command `php bin/console doctrine:fixtures:load` to load example data - newspaper, author, and articles.   
+**Finally**, use command `php bin/console doctrine:fixtures:load --group=app` to load example data - newspaper, author, and articles.   
 Making separated **.env** file to each environment is a part of [Symfony best practices](https://symfony.com/doc/5.0/best_practices.html#use-environment-variables-for-infrastructure-configuration).  
 More about configuring databases in [Symfony documentation](https://symfony.com/doc/5.0/doctrine.html).
+### Unit Testing
+Project has some basic unit and integration tests. To perform these tests, make sure that file **.env.test** exists (if not, create it).  
+**Next**, in **.env.test** add line defining database desiged especially for test purpose:  
+```
+DATABASE_URL="sqlite:///%kernel.project_dir%/var/database_test.sqlite"
+```
+**Finally**, every time before run any tests, load appropriate fixtures:
+```
+php bin/console doctrine:fixtures:load --group=test --env=test
+```
+Now, you can run  
+- all tests:
+```
+php bin/phpunit
+```
+- specific folder with tests:
+```
+php bin/phpunit tests/Eintity
+```
+- tests from specific file:
+```
+php bin/phpunit tests/Eintity/ArticleTest.php
+```
 ### Additional .htaccess to security and subdomain
 To make it work at remote server, you have to make additional configuration.  
 All steps are described on [Symfony documentation page](https://symfony.com/doc/5.0/setup/web_server_configuration.html).  

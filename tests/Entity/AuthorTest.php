@@ -25,7 +25,7 @@ class AuthorTest extends TestCase{
     public function testAuthorConstructor(){
         
         $newspaper=new Newspaper("New newspaper","lorem ipsum dolor sit amet");
-        $author=new Author("Jane Doe","Jane Doe was born in USA...",$newspaper);
+        $author=new Author("Jane Doe","Jane Doe was born in USA...", $newspaper);
         $this->assertSame($newspaper,$author->getNewspaper());
         $this->assertEquals("Jane Doe", $author->getName());
         $this->assertEquals("Jane Doe was born in USA...", $author->getBio());
